@@ -124,7 +124,7 @@ func (m *Store) Get(key interface{}, opts ...interface{}) (interface{}, bool) {
 	m.RLock()
 	val, has := m.cache[key]
 	m.RUnlock()
-	if val.value == nil {
+	if has && val.value == nil {
 		has = false
 	}
 	return val.value, has
